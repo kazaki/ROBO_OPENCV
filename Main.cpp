@@ -24,8 +24,8 @@ int main(int argc, char** argv) {
 
 	Mat img, templ, img_display, result;
 
-	img = imread( "feed/stop.png", CV_LOAD_IMAGE_GRAYSCALE );
-	templ = imread( "semaphores/stop.png", CV_LOAD_IMAGE_GRAYSCALE );
+	img = imread( "feed/left.png", CV_LOAD_IMAGE_GRAYSCALE );
+	templ = imread( "semaphores_pics/parking0.png", CV_LOAD_IMAGE_GRAYSCALE );
 	resize( templ, templ, Size(img.cols/3, img.rows/3) );
 
 	if (img.empty() || templ.empty()) {
