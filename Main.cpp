@@ -24,9 +24,15 @@ int main(int argc, char** argv) {
 
 	Mat img, templ, img_display, result;
 
-	img = imread( "Feed.png", CV_LOAD_IMAGE_GRAYSCALE );
-	templ = imread( "semaphores_pics/stop.png", CV_LOAD_IMAGE_GRAYSCALE );
+	img = imread( "feed/stop.png", CV_LOAD_IMAGE_GRAYSCALE );
+	templ = imread( "semaphores/stop.png", CV_LOAD_IMAGE_GRAYSCALE );
 	resize( templ, templ, Size(img.cols/3, img.rows/3) );
+
+	if (img.empty() || templ.empty()) {
+		cout << "Invalid images." << endl;
+		waitKey(0);
+		return 1;
+	}
 
 	img.copyTo( img_display );
 
@@ -34,7 +40,7 @@ int main(int argc, char** argv) {
 	int result_rows = img.rows - templ.rows + 1;
 
 	result.create( result_rows, result_cols, CV_32FC1 );
-	matchTemplate(img, templ, result, CV_TM_SQDIFF_NORMED  );
+	matchTemplate(img, templ, result, CV_TM_SQDIFF  );
 
 	double minVal; 
 	double maxVal; 
